@@ -1,0 +1,8 @@
+.chroma {
+    background-color: unset !important;
+}
+
+.post-content pre {
+    border-radius: 0;
+    content: 'hehehe';
+}

@@ -1,0 +1,47 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{- $noemoji := .Get "noemoji" | default false }}
+{{- $emoji := .Get "emoji" | default "💡" }}
+
+<style>
+    .callout {
+        color: #f7f4ef;
+        background: {{ .Get "bg" | default "#3e3e4f" }};
+        padding: 1.0em 1.25em;
+        border-radius: 3px;
+        display: flex;
+        flex-direction: row;
+        margin: 20px auto;
+    }
+
+    .callout code {
+        background-color: transparent;
+    }
+    
+    .callout-inner {
+        {{ if eq $noemoji false }} margin-left: 1em; {{ end }}
+    }
+   r
+    .callout div p {
+        margin: 0;
+    }
+
+    @media (max-width: 767px) {
+        .callout {
+            padding: 1.5em 0.75em 1.5em 0.6em;
+        }
+        
+        .callout-inner {
+          {{ if eq $noemoji false }} margin-left: 0.5em; {{ end }}
+        }
+    }
+</style>
+<div class="callout">
+  {{ if eq $noemoji false }}
+  <div>
+    {{ $emoji }}
+  </div>
+  {{ end }}
+  <div class="callout-inner">
+    {{ .Inner }}
+  </div>
+</div>

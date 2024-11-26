@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:ital@0;1&display=swap');
+
+:root {
+    --radius: 2px;
+}
+
+body {
+    font-family: 'PT Sans', sans-serif;
+}
+
+body p {
+    font-size: 18px;
+}
+
+.first-entry {
+    margin-top: 14px;
+    margin-bottom: 28px;
+}
+
+.chroma {
+    background-color: unset !important;
+}
+
+.post-content p {
+    margin-bottom: 10px;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    margin: 20px auto 12px auto;
+}
+
+.post-content ol {
+    margin: 10px auto 12px auto;
+}
+
+.post-content code {
+    color: #e8ac20;
+    margin: 0;
+    padding: 0.15em 0.4em;
+    /*background-color: #e2e2e2;*/
+}
+
+.post-content pre, code {
+    font-family: 'JetBrains Mono', monospace;
+}

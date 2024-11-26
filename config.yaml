@@ -1,0 +1,154 @@
+---
+baseURL: "https://blog.annahri.com/"
+title: Linux & Cloud | Blog An-Nahri
+
+pagination:
+  pagerSize: 10
+
+languageCode: 'id-id'
+defaultContentLanguage: 'id'
+timeZone: 'Asia/Jakarta'
+
+theme: PaperMod
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  env: production
+  title: Linux & Cloud | blog.annahri.com
+  description: "Berbagi seputar Linux dan Cloud"
+  keywords: [Blog, Portfolio]
+  author: ["Muhammad Ahfas An Nahri"]
+  DateFormat: "2 January 2006"
+  defaultTheme: dark
+  disableThemeToggle: true
+
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  hidemeta: false
+  hideSummary: false
+  showtoc: true
+  tocopen: true
+
+  comments: true
+  giscus:
+    repo: "annahri/blog.annahri.com"
+    repoID: "R_kgDOGUC4_g"
+    category: "General"
+    categoryID: "DIC_kwDOGUC4_s4CdOMx"
+    mapping: "og:title"
+    reactionsEnabled: "0"
+    emitMetadata: "0"
+    inputPosition: "top"
+    theme: "dark_dimmed"
+    lang: "id"
+    loading: "lazy"
+
+  mainSections:
+    - posts
+
+  assets:
+    bismillah: "17WTklzV4j4O0PMOeHtAqjXjXd9hrtfbT"
+    disableHLJS: true     # to disable highlight.js
+    favicon: "/favicon.ico"
+    custom_css: 
+      - "css/custom_papermod.css"
+
+  homeInfoParams:
+    Title: "Assalamualaikum.."
+    Content: |
+      _InsyaAllah_, blog ini berisi dan akan berisikan artikel-artikel yang
+      mayoritasnya membahas seputar Linux, Cloud dan lain-lain _InsyaAllah_,
+      dalam bahasa Indonesia 🇮🇩.
+
+      &nbsp;
+
+      Semoga bermanfaat, _barakallahufiikum_.
+
+  socialIcons:
+    - name: linkedin
+      url: "https://linkedin.com/in/an-nahri"
+    - name: stackoverflow
+      url: "https://unix.stackexchange.com/users/245871/annahri"
+    - name: github
+      url: "https://github.com/annahri"
+
+  # cover:
+  #   hidden: false         # hide everywhere but not in structured data
+  #   hiddenInList: true    # hide on list pages and home
+  #   hiddenInSingle: true  # hide on single page
+
+  editPost:
+    URL: "https://github.com/annahri/blog.annahri.com/tree/main/content"
+    Text: "Sarankan Pengubahan"   # edit text
+    appendFilePath: true          # to append file path to Edit link
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+  footer:
+    text: "Semua hak cipta dilindungi. Konten di blog ini tidak dapat digunakan, disalin, atau didistribusikan tanpa izin tertulis dari pemilik hak cipta"
+
+menu:
+  main:
+    - name: Tentang
+      url: about/
+      weight: 1
+    - identifier: archives
+      name: Arsip
+      url: /arsip/
+      weight: 5
+    - identifier: categories
+      name: Kategori
+      url: /categories/
+      weight: 10
+    - identifier: tags
+      name: Tagar
+      url: /tags/
+      weight: 20
+    - identifier: search
+      name: Pencarian
+      url: /cari/
+      weight: 30
+
+markup:
+  highlight:
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: true
+    # noClasses: false
+    pygmentsUseClasses: true
+    lineNos: true
+    style: gruvbox
+  goldmark:
+    renderer:
+      unsafe: true
+
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON   # is necessary
