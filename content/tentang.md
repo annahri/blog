@@ -5,6 +5,7 @@ date: 2024-02-14T20:53:21+07:00
 url: "about/"
 summary: "about"
 showToc: false
+comments: false
 ---
 
 ![Bismillah](/images/bismillah-2.png#center)
@@ -17,7 +18,7 @@ Saya membuat blog ini sebagai media untuk berbagi ilmu, dan juga untuk catatan t
 
 Pada blog ini, Anda akan menemukan tips, tutorial dan wawasan berdasarkan pengalaman pribadi nyata saya untuk memahami pembahasan-pembahasan seputar Linux dan yang berkaitan.
 
-Jangan ragu untuk menghubungi saya melalui email pribadi saya di ahfas.annahri\[at\]gmail.com
+Jangan ragu untuk menghubungi saya melalui email pribadi saya di [ahfas\[at\]annahri.com](mailto:ahfas@annahri.com)
 
 {{% callout noemoji=true bg="#b52d3a" %}}
 **Disclaimer:** Semua konten di blog ini dilindungi oleh hak cipta. Anda diperbolehkan menggunakan informasi di sini untuk referensi atau pembelajaran, tetapi dilarang keras menyalin atau mempublikasikan ulang konten tanpa memberikan kredit yang sesuai. Mari kita hargai usaha dan kerja keras dalam berbagi ilmu.

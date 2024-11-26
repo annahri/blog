@@ -1,5 +1,5 @@
 ---
-baseURL: "https://blog.annahri.com/"
+baseURL: "https://annahri.com/"
 title: Linux & Cloud | Blog An-Nahri
 
 pagination:
@@ -22,7 +22,7 @@ minify:
 
 params:
   env: production
-  title: Linux & Cloud | blog.annahri.com
+  title: Linux & Cloud | annahri.com
   description: "Berbagi seputar Linux dan Cloud"
   keywords: [Blog, Portfolio]
   author: ["Muhammad Ahfas An Nahri"]
@@ -44,7 +44,7 @@ params:
 
   comments: true
   giscus:
-    repo: "annahri/blog.annahri.com"
+    repo: "annahri/annahri.com"
     repoID: "R_kgDOGUC4_g"
     category: "General"
     categoryID: "DIC_kwDOGUC4_s4CdOMx"
@@ -91,7 +91,7 @@ params:
   #   hiddenInSingle: true  # hide on single page
 
   editPost:
-    URL: "https://github.com/annahri/blog.annahri.com/tree/main/content"
+    URL: "https://github.com/annahri/blog/tree/main/content"
     Text: "Sarankan Pengubahan"   # edit text
     appendFilePath: true          # to append file path to Edit link
 
