@@ -6,6 +6,7 @@ url: "about/"
 summary: "about"
 showToc: false
 comments: false
+hidemeta: true
 ---
 
 ![Bismillah](/images/bismillah-2.png#center)
