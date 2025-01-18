@@ -2,11 +2,11 @@
 title: "Tentang"
 pagetitle: "Tentang Saya dan Blog Ini"
 date: 2024-02-14T20:53:21+07:00
-url: "about/"
-summary: "about"
+url: "tentang/"
 showToc: false
 comments: false
 hidemeta: true
+ShowBreadCrumbs: false
 ---
 
 ![Bismillah](/images/bismillah-2.png#center)

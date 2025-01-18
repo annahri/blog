@@ -56,6 +56,10 @@ params:
     lang: "id"
     loading: "lazy"
 
+  analytics:
+    google:
+      SiteVerificationTag: "G-2CFC4HRZJZ"
+
   mainSections:
     - posts
 
@@ -110,7 +114,7 @@ params:
 menu:
   main:
     - name: Tentang
-      url: about/
+      url: tentang/
       weight: 1
     - identifier: archives
       name: Arsip
@@ -118,16 +122,20 @@ menu:
       weight: 5
     - identifier: categories
       name: Kategori
-      url: /categories/
+      url: /kategori/
       weight: 10
     - identifier: tags
       name: Tagar
-      url: /tags/
+      url: /tagar/
       weight: 20
     - identifier: search
       name: Pencarian
       url: /cari/
       weight: 30
+
+services:
+  googleAnalytics:
+    id: G-2CFC4HRZJZ
 
 markup:
   highlight:
