@@ -44,7 +44,9 @@ Unit=monitor-index.service
 WantedBy=multi-user.target
 ```
 
-kemudian, isi dari file `/etc/systemd/system/monitor-index.service`:
+Bagian `Unit` ini berisikan nama service unit yang akan dieksekusi oleh systemd ketika terdeteksi sesuatu pada file yang dimonitor. Sebenarnya secara default tidak perlu ditulis jika nama service unit itu sama dengan nama path unitnya.
+
+Sesuai dengan contoh skenario, isi dari file `/etc/systemd/system/monitor-index.service` bisa berupa:
 ```systemd
 [Unit]
 Description="Alert changes on /var/www/index.php by email"
@@ -74,7 +76,7 @@ Setiap kali ada pengubahan unit apapun pada `systemd` maka perlu melakukan `syst
 Kemudian meng-_enable_ unit path `monitor-index.path` tersebut dengan:
 
 ```
-systemctl enable --now monitor-index.service
+systemctl enable --now monitor-index.path
 ```
 
 Ketika dicek statusnya dengan `systemctl status monitor-index.path`, maka akan muncul seperti ini:
