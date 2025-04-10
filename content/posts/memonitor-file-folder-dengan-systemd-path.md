@@ -44,7 +44,7 @@ Unit=monitor-index.service
 WantedBy=multi-user.target
 ```
 
-Bagian `Unit` ini berisikan nama service unit yang akan dieksekusi oleh systemd ketika terdeteksi sesuatu pada file yang dimonitor. Sebenarnya secara default tidak perlu ditulis jika nama service unit itu sama dengan nama path unitnya.
+Bagian `Unit` (bukan `[Unit]`) ini berisikan nama service unit yang akan dieksekusi oleh systemd ketika terdeteksi sesuatu pada file yang dimonitor. Sebenarnya secara default tidak perlu ditulis jika nama service unit itu sama dengan nama path unitnya.
 
 Sesuai dengan contoh skenario, isi dari file `/etc/systemd/system/monitor-index.service` bisa berupa:
 ```systemd
