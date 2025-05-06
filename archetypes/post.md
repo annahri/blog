@@ -9,5 +9,5 @@ categories:
 - kategori
 ---
 
-![Bismillah](/images/bismillah-2.png#center)
+Bismillahirohmanirohim..
 
