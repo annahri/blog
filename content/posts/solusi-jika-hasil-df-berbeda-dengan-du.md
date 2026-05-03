@@ -48,6 +48,8 @@ gs        13645    www-data    2u   REG  253,0 31407562752     0    356 /tmp/#35
 ...
 ```
 
+Jika `+1L` tidak disupport, bisa dicoba kebalikannya: `lsof +L1`.
+
 Dari sini bisa diperhatikan bahwa, ada proses-proses yang masih menahan suatu file yang sudah dihapus dengan ukuran yang terhitung cukup besar. Hal seperti ini tidak akan bisa ditemukan jika hanya menggunakan tool seperti `du`, `ncdu` atau tool semisal.
 
 Kemudian bagaimana "membebaskan" ruang disk yang "tersita" tersebut?
