@@ -13,7 +13,7 @@ categories:
 
 Umumnya, entri sudoers yang dibahas pada tutorial-tutorial, seringnya hanya membahas penambahan entri sudoers biasa, alias memungkinkan user untuk mengeksekusi semua perintah sebagai root.
 
-Pada artikel kali ini, saya akan menjelaskan bagaimana membuat entri sudoers untuk memungkinkan user terkait untuk bisa mengeksekusi perintah yang ditentukan sebagai user lain. Contoh kasus dimana hal ini sangat bermanfaat adalah ketika ada _monitoring agent_ seperti Zabbix yang biasanya berjalan sebagai user tertentu (zabbix), yang memerlukan izin untuk menjalankan suatu perintah sebagai user lain tetapi tidak sampai diberi akses super user. 
+Pada artikel kali ini, saya akan menjelaskan bagaimana membuat entri sudoers untuk memungkinkan user terkait untuk bisa mengeksekusi perintah yang ditentukan sebagai user lain. Contoh kasus dimana hal ini sangat bermanfaat adalah ketika ada _monitoring agent_ seperti Zabbix yang biasanya berjalan sebagai user tertentu (zabbix), yang memerlukan izin untuk menjalankan suatu perintah sebagai user lain tetapi tidak sampai diberi akses super user.
 
 ## Sintaks Dasar File Sudoers
 
@@ -26,7 +26,7 @@ user  HOST=(user:group) LIST
 %group HOST=(user:group) LIST
 ```
 
-Ada 3 bagian inti: 
+Ada 3 bagian inti:
 
 1. penentuan user/group
 2. host dan user dan/atau group target
@@ -76,7 +76,7 @@ zabbix ALL=(zimbra) NOPASSWD: /bin/bash -c zmsoap -z --json GetServiceStatusRequ
 
 __Kenapa ada `/bin/bash -c` ?__
 
-Hal tersebut disebabkan karena ketika suatu perintah dijalankan melalui `sudo`, maka perintah tersebut akan dijalankan dari `bash -c` (atau shell lain). Pada kasus ini, shell dari user `zimbra` adalah `bash`.
+Itu karena contoh perintah diatas dijalankan melalui `sudo` dengan flag `-i`, maka perintah tersebut dijalankan sebagai `login shell`. Pada kasus ini, shell dari user `zimbra` adalah `bash`.
 
 Kemudian, entri tersebut disimpan pada file `/etc/sudoers.d/zabbix`. Untuk memverifikasinya, jalankan:
 
