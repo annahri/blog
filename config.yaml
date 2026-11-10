@@ -5,7 +5,7 @@ title: Linux & Cloud | Blog An-Nahri
 pagination:
   pagerSize: 10
 
-languageCode: 'id-id'
+locale: 'id-id'
 defaultContentLanguage: 'id'
 timeZone: 'Asia/Jakarta'
 
@@ -27,8 +27,8 @@ params:
   keywords: [Blog, Portfolio]
   author: ["Muhammad Ahfas An Nahri"]
   DateFormat: "2 January 2006"
-  defaultTheme: dark
-  disableThemeToggle: true
+  defaultTheme: auto
+  disableThemeToggle: false
 
   ShowReadingTime: true
   ShowShareButtons: false
@@ -67,8 +67,8 @@ params:
     bismillah: "17WTklzV4j4O0PMOeHtAqjXjXd9hrtfbT"
     disableHLJS: true     # to disable highlight.js
     favicon: "/favicon.ico"
-    custom_css: 
-      - "css/custom_papermod.css"
+    # custom_css: 
+    #   - "css/custom_papermod.css"
 
   homeInfoParams:
     Title: "Assalamualaikum.."
@@ -142,9 +142,9 @@ markup:
     anchorLineNos: false
     codeFences: true
     guessSyntax: true
-    # noClasses: false
+    noClasses: false
     pygmentsUseClasses: true
-    lineNos: true
+    lineNos: false
     style: gruvbox
   goldmark:
     renderer:

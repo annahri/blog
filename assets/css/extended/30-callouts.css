@@ -1,0 +1,42 @@
+/* 30-callouts.css — styles for layouts/shortcodes/callout.html
+   Add a new type: add one `.callout-<name>` rule setting --callout-accent,
+   and one entry to the $icons map in the shortcode. */
+
+.callout {
+  --callout-accent: var(--c-blue);
+  display: flex;
+  gap: 0.9em;
+  margin: 1.5rem 0;
+  padding: 0.9rem 1.2rem;
+  color: var(--fg);
+  background: var(--callout-bg, color-mix(in srgb, var(--callout-accent) 12%, var(--bg-soft)));
+  border-left: 4px solid var(--callout-accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.callout-note      { --callout-accent: var(--c-blue); }
+.callout-tip       { --callout-accent: var(--c-green); }
+.callout-important { --callout-accent: var(--c-purple); }
+.callout-warning   { --callout-accent: var(--c-yellow); }
+.callout-caution   { --callout-accent: var(--c-red); }
+
+.callout-icon { flex: none; line-height: var(--line-height-base); }
+.callout-body { flex: 1; min-width: 0; }
+.callout-body > :first-child { margin-top: 0; }
+.callout-body > :last-child  { margin-bottom: 0; }
+.callout-body p { margin-block: 0.5em; }
+
+.callout-title {
+  margin: 0 0 0.25em;
+  font-weight: 700;
+  color: var(--callout-accent);
+}
+
+.post-content .callout code {
+  background: color-mix(in srgb, var(--fg) 10%, transparent);
+  color: inherit;
+}
+
+@media (max-width: 767px) {
+  .callout { gap: 0.6em; padding: 0.8rem 0.9rem; }
+}

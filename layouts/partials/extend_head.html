@@ -1,12 +1,5 @@
-{{- /* Head custom content area start */ -}}
-{{- /*     Insert any custom code (web-analytics, resources, etc.) - it will appear in the <head></head> section of every page. */ -}}
-{{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
-{{- /* Head custom content area end */ -}}
- 
-{{ range .Site.Params.assets.custom_css -}}
-    <link rel="stylesheet" href="{{ . | absURL }}">
-{{- end }}
-
-{{ range .Site.Params.assets.custom_js -}}
-    <script type="text/javascript" src="{{ . | absURL }}"></script>
-{{- end }}
+{{- /* Roboto + Roboto Mono (variable fonts, one request). To self-host later,
+       delete these three lines and add @font-face rules; tokens stay the same. */ -}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400..700;1,400..700&family=Roboto+Mono:ital,wght@0,400..600;1,400..600&family=Roboto+Slab:wght@400..700&display=swap">

@@ -1,0 +1,112 @@
+/* 20-code.css — code blocks, language label, copy button, Gruvbox syntax.
+   Requires `markup.highlight.noClasses: false` in config.yaml. */
+
+/* container */
+.post-content .highlight,
+.post-content pre {
+  position: relative;
+  background: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.post-content .highlight pre { border: 0; border-radius: 0; margin: 0; background: transparent; }
+
+.post-content pre code,
+.post-content .highlight pre code {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-code-block);
+  line-height: var(--line-height-code);
+  color: var(--syn-fg);
+  background: transparent;
+  padding: var(--code-pad-y) var(--code-pad-x);
+  border-radius: 0;
+  word-break: normal;
+}
+
+/* language label (attribute is added by extend_footer.html) */
+.post-content .highlight[data-lang]::before {
+  content: attr(data-lang);
+  display: block;
+  padding: 0.3rem var(--code-pad-x);
+  font: 400 0.75rem/1.4 var(--font-mono);
+  color: var(--fg-muted);
+  background: var(--bg-inline);
+  border-bottom: 1px solid var(--border);
+}
+
+/* copy button (PaperMod adds .copy-code) — always visible, tucked in label bar */
+.post-content .highlight .copy-code {
+  display: block;
+  top: 0.2rem;
+  right: 0.4rem;
+  padding: 0.05rem 0.5rem;
+  font: 400 0.75rem/1.4 var(--font-mono);
+  color: var(--fg-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.post-content .highlight .copy-code:hover {
+  color: var(--fg-strong);
+  border-color: var(--border-strong);
+}
+/* blocks without a language: float the button over the corner instead */
+.post-content .highlight:not([data-lang]) .copy-code { background: var(--bg-inline); }
+
+/* line numbers / highlighted lines */
+.post-content .highlight .lnt,
+.post-content .highlight .ln { color: var(--fg-muted); }
+.post-content .highlight .hl { background: var(--syn-highlight-line); }
+.post-content .highlight .chroma { background: transparent !important; }
+
+/* ---------- Gruvbox syntax (Chroma classes) ---------- */
+.post-content .highlight .chroma .c,  .post-content .highlight .chroma .ch,
+.post-content .highlight .chroma .cm, .post-content .highlight .chroma .c1,
+.post-content .highlight .chroma .cs, .post-content .highlight .chroma .cp,
+.post-content .highlight .chroma .cpf { color: var(--syn-comment); font-style: italic; }
+
+.post-content .highlight .chroma .k,  .post-content .highlight .chroma .kc,
+.post-content .highlight .chroma .kd, .post-content .highlight .chroma .kn,
+.post-content .highlight .chroma .kp, .post-content .highlight .chroma .kr,
+.post-content .highlight .chroma .ow { color: var(--syn-keyword); }
+
+.post-content .highlight .chroma .kt, .post-content .highlight .chroma .nc,
+.post-content .highlight .chroma .nn, .post-content .highlight .chroma .na { color: var(--syn-type); }
+
+.post-content .highlight .chroma .nb, .post-content .highlight .chroma .bp,
+.post-content .highlight .chroma .no, .post-content .highlight .chroma .ne,
+.post-content .highlight .chroma .nd { color: var(--syn-builtin); }
+
+.post-content .highlight .chroma .nf, .post-content .highlight .chroma .fm { color: var(--syn-function); }
+
+.post-content .highlight .chroma .nv, .post-content .highlight .chroma .vc,
+.post-content .highlight .chroma .vg, .post-content .highlight .chroma .vi,
+.post-content .highlight .chroma .nx, .post-content .highlight .chroma .py { color: var(--syn-name); }
+
+.post-content .highlight .chroma .nt { color: var(--syn-tag); }
+
+.post-content .highlight .chroma .s,  .post-content .highlight .chroma .sa,
+.post-content .highlight .chroma .sb, .post-content .highlight .chroma .sc,
+.post-content .highlight .chroma .dl, .post-content .highlight .chroma .sd,
+.post-content .highlight .chroma .s2, .post-content .highlight .chroma .sh,
+.post-content .highlight .chroma .si, .post-content .highlight .chroma .sx,
+.post-content .highlight .chroma .sr, .post-content .highlight .chroma .s1,
+.post-content .highlight .chroma .ss { color: var(--syn-string); }
+.post-content .highlight .chroma .se { color: var(--syn-builtin); }
+
+.post-content .highlight .chroma .m,  .post-content .highlight .chroma .mb,
+.post-content .highlight .chroma .mf, .post-content .highlight .chroma .mh,
+.post-content .highlight .chroma .mi, .post-content .highlight .chroma .il,
+.post-content .highlight .chroma .mo, .post-content .highlight .chroma .l,
+.post-content .highlight .chroma .ld { color: var(--syn-number); }
+
+.post-content .highlight .chroma .o,  .post-content .highlight .chroma .p,
+.post-content .highlight .chroma .n,  .post-content .highlight .chroma .err { color: var(--syn-fg); background: transparent; }
+
+.post-content .highlight .chroma .gd { color: var(--syn-deleted); }
+.post-content .highlight .chroma .gi { color: var(--syn-inserted); }
+.post-content .highlight .chroma .ge { font-style: italic; }
+.post-content .highlight .chroma .gs, .post-content .highlight .chroma .gh,
+.post-content .highlight .chroma .gu { font-weight: 700; }

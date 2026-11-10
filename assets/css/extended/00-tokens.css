@@ -1,0 +1,138 @@
+/* ==========================================================================
+   00-tokens.css  —  the ONE file you edit to retheme the blog.
+   Gruvbox (dark hard / light hard) + Roboto.
+
+   Structure
+     1. :root              -> layout, type scale, LIGHT palette
+     2. .dark              -> DARK palette (same variable names)
+     3. body, body.dark    -> semantic roles + PaperMod variable mapping
+   Change a palette value in (1)/(2), or a role in (3). Everything else
+   (typography, code, callouts) only ever reads these variables.
+   ========================================================================== */
+
+/* ---------- 1. Layout, type scale, LIGHT palette ---------- */
+:root {
+  /* layout */
+  --main-width: 720px;          /* PaperMod's content column */
+  --radius: 2px;                /* PaperMod: cards, code blocks */
+  --radius-sm: 2px;
+
+  /* fonts */
+  --font-sans: "Roboto", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  /* headings + post subtitle. Roboto Slab now. Alternatives: var(--font-sans), or "Roboto Serif", Georgia, serif
+     (add that family to the font link in extend_head.html) */
+  --font-heading: "Roboto Slab", Georgia, serif;
+  --heading-style: normal;      /* normal | italic */
+  --subtitle-style: normal;     /* normal | italic */
+  --subtitle-size: 1.25rem;
+  --font-mono: "Roboto Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* type scale */
+  --font-size-base: 18px;
+  --line-height-base: 1.7;
+
+  /* spacing (migrated from custom_papermod.css) */
+  --space-p: 10px;              /* paragraph bottom margin */
+  --space-heading-top: 20px;
+  --space-heading-bottom: 12px;
+  --space-list: 10px 0 12px;    /* ol */
+  --space-first-entry: 14px 0 28px;
+  --title-size: 2rem;           /* post title */
+  --h1-size: 1.9rem;
+  --h2-size: 1.5rem;
+  --h3-size: 1.25rem;
+  --h4-size: 1.05rem;
+  --font-size-code-inline: 0.875em;
+  --font-size-code-block: 0.85rem;
+  --line-height-code: 1.55;
+  --code-pad-x: 1.1rem;
+  --code-pad-y: 1rem;
+
+  /* Gruvbox light: soft page, lighter raised surfaces (cards, code, callouts) */
+  --bg: #f2e5bc;
+  --bg-soft: #fbf1c7;           /* cards, callouts */
+  --bg-code: #fbf1c7;           /* code blocks */
+  --bg-inline: #ebdbb2;         /* inline code, label chips */
+  --fg: #3c3836;
+  --fg-strong: #282828;         /* headings */
+  --fg-muted: #665c54;
+  --border: #d5c4a1;
+  --border-strong: #bdae93;
+  --selection: #d5c4a1;
+
+  /* accents (faded variants for light) */
+  --c-red: #9d0006;
+  --c-green: #79740e;
+  --c-yellow: #b57614;
+  --c-blue: #076678;
+  --c-purple: #8f3f71;
+  --c-aqua: #427b58;
+  --c-orange: #af3a03;
+  --c-gray: #7c6f64;
+  --c-code: #af3a03;            /* inline code text (orange) */
+}
+
+/* ---------- 2. DARK palette (Gruvbox dark hard) ---------- */
+.dark,
+:root:has(body.dark) {
+  --bg: #1d2021;
+  --bg-soft: #282828;
+  --bg-code: #282828;
+  --bg-inline: #3c3836;
+  --fg: #ebdbb2;
+  --fg-strong: #fbf1c7;
+  --fg-muted: #a89984;
+  --border: #3c3836;
+  --border-strong: #504945;
+  --selection: #504945;
+
+  /* accents (bright variants for dark) */
+  --c-red: #fb4934;
+  --c-green: #b8bb26;
+  --c-yellow: #fabd2f;
+  --c-blue: #83a598;
+  --c-purple: #d3869b;
+  --c-aqua: #8ec07c;
+  --c-orange: #fe8019;
+  --c-gray: #928374;
+  --c-code: #fabd2f;            /* inline code text (yellow, like your old #e8ac20) */
+}
+
+/* ---------- 3. Roles + PaperMod mapping ----------
+   Declared on body so they resolve against whichever palette is active.
+   `body.dark` is more specific than PaperMod's `.dark`, so we win.        */
+body,
+body.dark {
+  /* roles used by our own CSS */
+  --heading: var(--fg-strong);
+  --link: var(--c-blue);
+  --link-hover: var(--c-aqua);
+  --blockquote-border: var(--c-orange);
+  --inline-code-fg: var(--c-code);
+
+  /* syntax highlighting (see 20-code.css) */
+  --syn-fg: var(--fg);
+  --syn-comment: var(--c-gray);
+  --syn-keyword: var(--c-red);
+  --syn-string: var(--c-green);
+  --syn-number: var(--c-purple);
+  --syn-function: var(--c-green);
+  --syn-type: var(--c-yellow);
+  --syn-builtin: var(--c-orange);
+  --syn-name: var(--c-blue);
+  --syn-tag: var(--c-aqua);
+  --syn-deleted: var(--c-red);
+  --syn-inserted: var(--c-green);
+  --syn-highlight-line: var(--bg-inline);
+
+  /* PaperMod's own variables */
+  --theme: var(--bg);
+  --entry: var(--bg-soft);
+  --primary: var(--fg-strong);
+  --secondary: var(--fg-muted);
+  --tertiary: var(--border-strong);
+  --content: var(--fg);
+  --code-block-bg: var(--bg-code);
+  --code-bg: var(--bg-inline);
+  --border: var(--border);
+}

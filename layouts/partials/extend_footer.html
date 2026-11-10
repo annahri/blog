@@ -1,0 +1,180 @@
+<script>
+(function () {
+  /* 1. Language label for code blocks: copy Chroma's data-lang onto .highlight */
+  document.querySelectorAll(".post-content .highlight").forEach(function (box) {
+    var code = box.querySelector("code[data-lang]");
+    var lang = code && code.getAttribute("data-lang");
+    if (!lang) {
+      var c = box.querySelector("code[class*='language-']");
+      var m = c && c.className.match(/language-(\S+)/);
+      lang = m && m[1];
+    }
+    if (lang) box.setAttribute("data-lang", lang);
+  });
+
+  /* 2. Three-state theme toggle: system -> light -> dark -> system.
+        Stored in localStorage "pref-theme" (PaperMod's own key). Anything other
+        than "light"/"dark" means "follow system", which PaperMod's head script
+        already handles when params.defaultTheme is "auto".
+        Runs on DOMContentLoaded because PaperMod attaches its own two-state
+        click handler in a script that runs after this partial. */
+  document.addEventListener("DOMContentLoaded", function () {
+    var KEY = "pref-theme";
+    var old = document.getElementById("theme-toggle");
+    if (!old) return;
+
+    var btn = old.cloneNode(true);            /* drops PaperMod's handler */
+    old.parentNode.replaceChild(btn, old);
+    btn.setAttribute("role", "button");
+    btn.setAttribute("tabindex", "0");
+    btn.insertAdjacentHTML("beforeend",
+      '<svg class="theme-icon-system" xmlns="http://www.w3.org/2000/svg" width="24" height="24" ' +
+      'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+      'stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/>' +
+      '<line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>');
+
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    var order = ["system", "light", "dark"];
+
+    function read() {
+      try { var v = localStorage.getItem(KEY); return v === "light" || v === "dark" ? v : "system"; }
+      catch (e) { return "system"; }
+    }
+    function apply(mode) {
+      var dark = mode === "dark" || (mode === "system" && mq.matches);
+      document.body.classList.toggle("dark", dark);
+      var tc = document.querySelector('meta[name="theme-color"]');
+      if (tc) tc.setAttribute("content", getComputedStyle(document.body).backgroundColor);
+      btn.setAttribute("data-mode", mode);
+      var label = "Theme: " + mode;
+      btn.setAttribute("title", label + " (Alt + T)");
+      btn.setAttribute("aria-label", label);
+    }
+    function next() {
+      var mode = order[(order.indexOf(read()) + 1) % order.length];
+      try { localStorage.setItem(KEY, mode); } catch (e) {}
+      apply(mode);
+    }
+
+    btn.addEventListener("click", next);
+    btn.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); next(); }
+    });
+    mq.addEventListener("change", function () { if (read() === "system") apply("system"); });
+    apply(read());
+  });
+})();
+</script>
+<script>
+(function () {
+  /* Click-to-zoom lightbox for images inside posts.
+     Opt out per image: add data-no-zoom. Larger source: data-full="/path/full.png".
+     Caption comes from the image's alt text (falls back to title). Images that are
+     already links are left alone. */
+  var lang = (document.documentElement.lang || "").slice(0, 2);
+  var T = lang === "id"
+    ? { zoom: "klik untuk memperbesar", close: "Tutup", viewer: "Penampil gambar" }
+    : { zoom: "click to zoom", close: "Close", viewer: "Image viewer" };
+
+  var count = 0;
+  document.querySelectorAll(".post-content img").forEach(function (img) {
+    if (img.closest("a") || img.hasAttribute("data-no-zoom")) return;
+    img.classList.add("zoomable");
+    img.tabIndex = 0;
+    img.setAttribute("role", "button");
+    img.setAttribute("aria-label", (img.alt ? img.alt + " \u2014 " : "") + T.zoom);
+    count++;
+  });
+  if (!count) return;
+
+  var lb, stage, big, cap, closeBtn, lastFocus, timer;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function build() {
+    if (lb) return;
+    lb = document.createElement("div");
+    lb.className = "lightbox";
+    lb.hidden = true;
+    lb.setAttribute("role", "dialog");
+    lb.setAttribute("aria-modal", "true");
+    lb.setAttribute("aria-label", T.viewer);
+    lb.innerHTML =
+      '<button type="button" class="lightbox-close" aria-label="' + T.close + '">\u00d7</button>' +
+      '<div class="lightbox-stage"><img class="lightbox-img" tabindex="0" role="button" alt=""></div>' +
+      '<p class="lightbox-caption" hidden></p>';
+    document.body.appendChild(lb);
+    stage = lb.querySelector(".lightbox-stage");
+    big = lb.querySelector(".lightbox-img");
+    cap = lb.querySelector(".lightbox-caption");
+    closeBtn = lb.querySelector(".lightbox-close");
+    lb.addEventListener("click", function (e) {
+      if (e.target === big) toggle(e);
+      else if (e.target !== cap) close();       /* backdrop, stage, close button */
+    });
+  }
+
+  function open(img) {
+    build();
+    clearTimeout(timer);
+    lastFocus = img;
+    var text = img.alt || img.title || "";
+    big.src = img.getAttribute("data-full") || img.currentSrc || img.src;
+    big.alt = img.alt || "";
+    big.setAttribute("aria-label", text || T.viewer);
+    cap.textContent = text;
+    cap.hidden = !text;
+    lb.classList.remove("is-zoomed");
+    stage.scrollLeft = 0; stage.scrollTop = 0;
+    lb.hidden = false;
+    document.documentElement.classList.add("lightbox-open");
+    requestAnimationFrame(function () { lb.classList.add("is-open"); });
+    closeBtn.focus();
+  }
+
+  function close() {
+    if (!lb || lb.hidden) return;
+    lb.classList.remove("is-open");
+    document.documentElement.classList.remove("lightbox-open");
+    timer = setTimeout(function () { lb.hidden = true; big.removeAttribute("src"); },
+                       reduce.matches ? 0 : 160);
+    if (lastFocus) lastFocus.focus({ preventScroll: true });
+  }
+
+  /* toggle fit <-> full size, keeping the clicked point under the cursor */
+  function toggle(e) {
+    var r = big.getBoundingClientRect();
+    var pointer = e.type === "click" && e.detail > 0;
+    var fx = pointer ? (e.clientX - r.left) / r.width : 0.5;
+    var fy = pointer ? (e.clientY - r.top) / r.height : 0.5;
+    var zoomed = lb.classList.toggle("is-zoomed");
+    if (zoomed) {
+      stage.scrollLeft = fx * big.offsetWidth - stage.clientWidth / 2;
+      stage.scrollTop = fy * big.offsetHeight - stage.clientHeight / 2;
+    } else {
+      stage.scrollLeft = 0; stage.scrollTop = 0;
+    }
+  }
+
+  document.addEventListener("click", function (e) {
+    var img = e.target.closest && e.target.closest("img.zoomable");
+    if (img) open(img);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (lb && !lb.hidden) {
+      if (e.key === "Escape") { close(); }
+      else if (e.key === "Tab") {              /* keep focus inside the viewer */
+        e.preventDefault();
+        (document.activeElement === closeBtn ? big : closeBtn).focus();
+      } else if ((e.key === "Enter" || e.key === " ") && document.activeElement === big) {
+        e.preventDefault(); toggle(e);
+      }
+      return;
+    }
+    var t = e.target;
+    if (t.classList && t.classList.contains("zoomable") && (e.key === "Enter" || e.key === " ")) {
+      e.preventDefault(); open(t);
+    }
+  });
+})();
+</script>

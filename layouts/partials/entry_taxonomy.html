@@ -1,0 +1,10 @@
+{{- /* Category + tag chips for post cards. Called from layouts/_default/list.html.
+       Chips are links, lifted above the card's full-size .entry-link by CSS. */ -}}
+{{- $cats := .GetTerms "categories" -}}
+{{- $tags := .GetTerms "tags" -}}
+{{- if or $cats $tags }}
+<div class="entry-taxonomy">
+  {{- range $cats }}<a class="entry-cat" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+  {{- range $tags }}<a class="entry-tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+</div>
+{{- end }}
